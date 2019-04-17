@@ -1,18 +1,19 @@
 <template>
   <div
-    :title="title"
-    :step="step"
+    :col-name="colName"
+    :tasks="tasks"
     class="column">
     <div class="h-column">
-      <h2>{{ title }}</h2>
+      <h2>{{ colName }}</h2>
     </div>
 
     <div class="c-body">
-      <slot />
-      <card>
-        <h4>Tarefa</h4>
-        <p>Tarefa em {{ step }}</p>
-      </card>
+      <div v-for="(task, index) in tasks" :key="index">
+        <card v-if="task.step == colName">
+          <h4>{{task.name}}</h4>
+          <p>{{ task.description }}</p>
+        </card>
+      </div>
     </div>
   </div>
 </template>
@@ -24,36 +25,16 @@ export default {
     Card
   },
   props: {
-    title: {
+    colName: {
       type: String,
       default: ""
     },
-    step: {
-      type: String,
-      default: "backlog"
-    },
-    cards: {
-      type: Object,
+    tasks: {
+      type: Array,
       default: () => ({})
     }
-  },
-  data() {
-    return {
-      tasks: {
-        task_1: {
-          name: 'Tarefa 1',
-          description: 'Primeira tarefa',
-          step: 'todo'
-        },
-        task_2: {
-          name: 'Tarefa 2',
-          description: 'Segunda tarefa',
-          step: 'Backlog'
-        }
-      }
-    }
   }
-};
+}
 </script>
 <style>
 .h-column {

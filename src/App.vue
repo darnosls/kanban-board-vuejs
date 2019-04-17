@@ -7,25 +7,39 @@
       <column
         v-for="(step, index) in steps"
         :key="index"
-        :title="step"
-        :step="index">
+        :col-name="step"
+        :tasks="taskList">
       </column>
     </div>
   </div>
 </template>
 
 <script>
-import { Card, Column } from './components'
+import { Column } from './components'
 
 export default {
   name: 'app',
   components: {
-    Card,
     Column
   },
   data() {
     return {
-      steps: ['backlog','todo','doing','homolog','done']
+      steps: ['backlog','todo','doing','done'],
+      taskList: [{
+          name: 'Comprar ingredientes principais',
+          description: 'Ir ao açougue e comprar carne, linguiça e asinhas de frango',
+          step: 'backlog'
+        },
+        {
+          name: 'Preparar o molho',
+          description: 'Preparar o molho com base nas informações encotradas no livro de receitas da vovó',
+          step: 'doing'
+        },
+        {
+          name: 'Bebidas',
+          description: 'Passar na distribuidora de bebidas e comprar refrigerante',
+          step: 'done'
+        }]
     }
   }
 }

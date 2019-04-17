@@ -5,7 +5,8 @@
 </template>
 <style>
 .card {
-  width: 5em;
+  min-width: 5em;
+  max-width: 9em;
   background-color: rgb(233, 218, 169);
 }
 </style>
