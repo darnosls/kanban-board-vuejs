@@ -3,22 +3,29 @@
     <div>
       <h1>Kanban-Board Vue.js</h1>
     </div>
-    <Steps
-      :steps="steps"/>
+    <div style="display: flex; flex-direction: row; justify-content: center">
+      <column
+        v-for="(step, index) in steps"
+        :key="index"
+        :title="step"
+        :step="index">
+      </column>
+    </div>
   </div>
 </template>
 
 <script>
-import Steps from './components/Steps.vue'
+import { Card, Column } from './components'
 
 export default {
   name: 'app',
   components: {
-    Steps
+    Card,
+    Column
   },
   data() {
     return {
-      steps: ['backlog','todo','doing','done']
+      steps: ['backlog','todo','doing','homolog','done']
     }
   }
 }
@@ -32,9 +39,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center
 }
 
 .kb-board {
