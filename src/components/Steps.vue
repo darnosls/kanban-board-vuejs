@@ -1,24 +1,34 @@
 <template>
-  <div id="app">
-    <div>
-      <h1>Kanban-Board Vue.js</h1>
-    </div>
-    <Steps
-      :steps="steps"/>
+  <div
+    :steps="steps"
+    class="kb-board">
+    <table>
+      <thead>
+        <tr>
+          <th v-for="item in steps" :key="item">{{item}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td v-for="item in steps" :key="item"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import Steps from './components/Steps.vue'
 
 export default {
-  name: 'app',
-  components: {
-    Steps
+  props: {
+    steps: {
+      type: Array,
+      default: ()=>({})
+    }
   },
   data() {
     return {
-      steps: ['backlog','todo','doing','done']
+      stage_taks: ['backlog','todo','doing','done']
     }
   }
 }
