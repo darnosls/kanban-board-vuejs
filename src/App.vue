@@ -3,7 +3,7 @@
     <div>
       <h1>Kanban-Board Vue.js</h1>
     </div>
-    <div style="display: flex; flex-direction: row; justify-content: center">
+    <div class="row kanban-steps">
       <column
         v-for="(step, index) in steps"
         :key="index"
@@ -11,16 +11,39 @@
         :tasks="taskList">
       </column>
     </div>
+    <div class="row">
+        <div class="add-tasks">
+          <label for="task-name">Nome da tarefa</label>
+          <input
+            v-model="task.name"
+            type="text"
+            id="task-name"
+            name="name"
+          >
+          <label for="task-description">Descreva a tarefa</label>
+          <textarea
+            v-model="task.description"
+            rows="5"
+            id="task-description"></textarea>
+          <input
+            type="button"
+            value="Criar"
+            @click="addTask"
+          >
+        </div>
+      <!-- <CreateTask /> -->
+    </div>
   </div>
 </template>
 
 <script>
-import { Column } from './components'
+import { Column, CreateTask } from './components'
 
 export default {
   name: 'app',
   components: {
-    Column
+    Column,
+    CreateTask
   },
   data() {
     return {
@@ -32,14 +55,28 @@ export default {
         },
         {
           name: 'Preparar o molho',
-          description: 'Preparar o molho com base nas informações encotradas no livro de receitas da vovó',
+          description: 'Preparar o molho com base nas informações encontradas no livro de receitas da vovó',
           step: 'doing'
         },
         {
           name: 'Bebidas',
           description: 'Passar na distribuidora de bebidas e comprar refrigerante',
           step: 'done'
-        }]
+        }],
+        task: {
+          name: '',
+          description: '',
+          step: 'backlog'
+        }
+    }
+  },
+  methods: {
+    addTask() {
+      let obj = new Object()
+      obj.name = this.task.name
+      obj.description = this.task.description
+      obj.step = this.task.step
+      this.taskList.push(obj)
     }
   }
 }
@@ -55,27 +92,13 @@ export default {
   margin-top: 60px;
 }
 
-.kb-board {
+.kanban-steps {
+  margin-bottom: 3em;
+}
+
+.row {
   display: flex;
-  flex-direction: column;
-  justify-content: center
-}
-
-table {
-  background-color: bisque;
-  align-self: center;
-}
-
-td {
-  border: 1px solid black;
-}
-
-table > thead > tr > th {
-  background-color: bisque;
-  min-width: 10em;
-}
-
-table > tbody {
-  height: 25em;
+  justify-content: center;
+  flex-direction: row;
 }
 </style>
