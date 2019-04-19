@@ -70,6 +70,10 @@ export default {
         }
     }
   },
+  mounted() {
+    this.$store.dispatch('createTask', { payload: this.taskList })
+    console.log(this.$store)
+  },
   methods: {
     addTask() {
       let obj = new Object()

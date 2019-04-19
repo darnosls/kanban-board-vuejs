@@ -1,9 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex)
+const vuexPersist = new VuexPersist({
+  key: 'my-app',
+  storage: sessionStorage
+})
 
 export default new Vuex.Store({
+  plugins: [vuexPersist.plugin],
   state: {
     task: {
       name: '',
@@ -18,6 +24,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_TASK: function(state, payload) {
+      console.log(payload)
       state.task = payload
     }
   },
