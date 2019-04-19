@@ -12,25 +12,25 @@
       </column>
     </div>
     <div class="row">
-        <div class="add-tasks">
-          <label for="task-name">Nome da tarefa</label>
-          <input
-            v-model="task.name"
-            type="text"
-            id="task-name"
-            name="name"
-          >
-          <label for="task-description">Descreva a tarefa</label>
-          <textarea
-            v-model="task.description"
-            rows="5"
-            id="task-description"></textarea>
-          <input
-            type="button"
-            value="Criar"
-            @click="addTask"
-          >
-        </div>
+      <div class="add-tasks">
+        <label for="task-name">Nome da tarefa</label>
+        <input
+          v-model="task.name"
+          type="text"
+          id="task-name"
+          name="name"
+        >
+        <label for="task-description">Descreva a tarefa</label>
+        <textarea
+          v-model="task.description"
+          rows="5"
+          id="task-description"></textarea>
+        <input
+          type="button"
+          value="Criar"
+          @click="addTask"
+        >
+      </div>
       <!-- <CreateTask /> -->
     </div>
   </div>

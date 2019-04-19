@@ -9,7 +9,9 @@
 
     <div class="c-body">
       <div v-for="(task, index) in tasks" :key="index">
-        <card v-if="task.step == colName">
+        <card v-if="task.step == colName"
+          @click.native="moveTask"
+        >
           <h4>{{task.name}}</h4>
           <p>{{ task.description }}</p>
         </card>
@@ -32,6 +34,15 @@ export default {
     tasks: {
       type: Array,
       default: () => ({})
+    }
+  },
+  methods: {
+    moveTask(){
+      console.log(this)
+      // this.$store.dispatch('moveTask', { payload: })
+      //   .then(resp => {
+      //     console.log(resp)
+      //   })
     }
   }
 }
