@@ -11,11 +11,15 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
   plugins: [vuexPersist.plugin],
   state: {
-    task: {
-      name: '',
-      description: '',
-      step: 'backlog'
-    }
+    task: []
+  },
+
+  initialState() {
+
+  },
+
+  initialTasks() {
+
   },
   getters: {
     task(state) {
@@ -24,15 +28,15 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_TASK: function(state, payload) {
-      console.log(payload)
-      state.task = payload
+      state.task.push(payload)
     }
   },
   actions: {
     async createTask({ commit }, { payload }) {
-      console.log('Criando tarefas')
-      commit('SET_TASK', payload)
-      return true
+      if (payload.name && payload.description) {
+        commit('SET_TASK', payload)
+        return true
+      }
     }
   }
 })

@@ -33,10 +33,12 @@ export default {
   },
   methods: {
     addTask(){
-      this.$store.dispatch('createTask', { payload: this.task })
-        .then(resp => {
-          console.log(resp)
-        })
+      let payload = new Object()
+      payload.name = this.task.name
+      payload.description = this.task.description
+      payload.step = this.task.step
+
+      this.$store.dispatch('createTask', { payload })
     }
   }
 }
