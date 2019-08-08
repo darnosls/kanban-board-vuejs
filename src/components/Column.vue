@@ -1,15 +1,16 @@
 <template>
   <div
     :col-name="colName"
-    :tasks="tasks"
     class="column">
     <div class="h-column">
       <h2>{{ colName }}</h2>
     </div>
 
     <div class="c-body">
-      <div v-for="(task, index) in tasks" :key="index">
-        <card v-if="task.step == colName">
+      <div v-for="(task, index) in taskList" :key="index">
+        <card v-if="task.step == colName"
+          @click.native="moveTask"
+        >
           <h4>{{task.name}}</h4>
           <p>{{ task.description }}</p>
         </card>
@@ -32,6 +33,19 @@ export default {
     tasks: {
       type: Array,
       default: () => ({})
+    }
+  },
+  computed: {
+    taskList(){
+      return this.$store.getters.task;
+    }
+  },
+  methods: {
+    moveTask(){
+      // this.$store.dispatch('moveTask', { payload: })
+      //   .then(resp => {
+      //     console.log(resp)
+      //   })
     }
   }
 }

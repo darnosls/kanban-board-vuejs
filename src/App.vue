@@ -3,43 +3,31 @@
     <div>
       <h1>Kanban-Board Vue.js</h1>
     </div>
-    <div style="display: flex; flex-direction: row; justify-content: center">
+    <div class="row kanban-steps">
       <column
         v-for="(step, index) in steps"
         :key="index"
-        :col-name="step"
-        :tasks="taskList">
+        :col-name="step">
       </column>
+    </div>
+    <div class="row">
+      <CreateTask />
     </div>
   </div>
 </template>
 
 <script>
-import { Column } from './components'
+import { Column, CreateTask } from './components'
 
 export default {
   name: 'app',
   components: {
-    Column
+    Column,
+    CreateTask
   },
   data() {
     return {
-      steps: ['backlog','todo','doing','done'],
-      taskList: [{
-          name: 'Comprar ingredientes principais',
-          description: 'Ir ao açougue e comprar carne, linguiça e asinhas de frango',
-          step: 'backlog'
-        },
-        {
-          name: 'Preparar o molho',
-          description: 'Preparar o molho com base nas informações encotradas no livro de receitas da vovó',
-          step: 'doing'
-        },
-        {
-          name: 'Bebidas',
-          description: 'Passar na distribuidora de bebidas e comprar refrigerante',
-          step: 'done'
-        }]
+      steps: ['backlog','todo','doing','done']
     }
   }
 }
@@ -55,27 +43,13 @@ export default {
   margin-top: 60px;
 }
 
-.kb-board {
+.kanban-steps {
+  margin-bottom: 3em;
+}
+
+.row {
   display: flex;
-  flex-direction: column;
-  justify-content: center
-}
-
-table {
-  background-color: bisque;
-  align-self: center;
-}
-
-td {
-  border: 1px solid black;
-}
-
-table > thead > tr > th {
-  background-color: bisque;
-  min-width: 10em;
-}
-
-table > tbody {
-  height: 25em;
+  justify-content: center;
+  flex-direction: row;
 }
 </style>
